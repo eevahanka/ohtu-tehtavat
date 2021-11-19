@@ -9,7 +9,7 @@ Login With Correct Credentials
 
 *** Test Cases ***
 Login With Incorrect Password
-    Input Credentials  kalle  wrongpassword
+    Input Credentials  kalle  wrongpassword1
     Output Should Contain  Invalid username or password
 
 Login With Nonexistent Username
