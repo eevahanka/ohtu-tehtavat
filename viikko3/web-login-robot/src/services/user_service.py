@@ -2,7 +2,7 @@ from entities.user import User
 from repositories.user_repository import (
     user_repository as default_user_repository
 )
-
+import string
 
 class UserInputError(Exception):
     pass
@@ -39,7 +39,17 @@ class UserService:
     def validate(self, username, password, password_confirmation):
         if not username or not password:
             raise UserInputError("Username and password are required")
-
+        elif len(username) < 3:
+            raise UserInputError("Too short username")
+        elif len(password) < 8:
+            raise UserInputError("Too short password")
+        elif password != password_confirmation:
+            raise UserInputError("Passwords dont mach")
+        for letter in password:
+            if letter not in string.ascii_letters:
+                break
+        else:
+            raise UserInputError("password cannot contain only letters")
         # toteuta loput tarkastukset tänne ja nosta virhe virhetilanteissa
 
 
